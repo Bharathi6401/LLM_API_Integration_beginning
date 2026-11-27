@@ -1,3 +1,4 @@
+# Controlling response format
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -9,7 +10,22 @@ client = OpenAI(
 messages = [
     {
         "role": "system",
-        "content": "You are a friendly Python tutor."
+        "content": """
+        You are a friendly Python tutor.
+
+        Rules:
+        - Answer only Python-related questions.
+        - Explain concepts in beginner-friendly language.
+        - Use simple examples.
+        - If a question is unrelated to Python,
+          politely explain that you only help with Python.
+
+        Response format:
+        - Keep answers concise.
+        - Use bullet points wherever appropriate.
+        - Use short code examples when necessary.
+        - Avoid unnecessarily long explanations.
+        """
     }
 ]
 
@@ -37,6 +53,93 @@ while True:
     })
 
     print("\nAI:", answer)
+# System prompt
+# import os
+# from dotenv import load_dotenv
+# from openai import OpenAI
+# load_dotenv()
+# client = OpenAI(
+#     api_key=os.getenv("GROQ_API_KEY"),
+#     base_url="https://api.groq.com/openai/v1"
+#     )
+# messages = [
+#     {
+#         "role": "system",
+#         "content": """
+#         You are a friendly Python tutor.
+
+#         Rules:
+#         - Answer only Python-related questions.
+#         - Explain concepts in beginner-friendly language.
+#         - Use simple examples.
+#         - If a question is unrelated to Python,
+#           politely explain that you only help with Python.
+#         """
+#     }
+# ]
+# while True:
+#     question = input("Ask me anything: ").strip()
+
+#     if question.lower() == "exit":
+#         break
+
+#     messages.append({
+#         "role": "user",
+#         "content": question
+#     })
+
+#     response = client.chat.completions.create(
+#         model="openai/gpt-oss-20b",
+#         messages=messages
+#     )
+
+#     answer = response.choices[0].message.content
+
+#     messages.append({
+#         "role": "assistant",
+#         "content": answer
+#     })
+
+#     print("\nAI:", answer)
+# import os
+# from dotenv import load_dotenv
+# from openai import OpenAI
+# load_dotenv()
+# client = OpenAI(
+#     api_key=os.getenv("GROQ_API_KEY"),
+#     base_url="https://api.groq.com/openai/v1"
+#     )
+# messages = [
+#     {
+#         "role": "system",
+#         "content": "You are a friendly Python tutor."
+#     }
+# ]
+
+# while True:
+#     question = input("Ask me anything: ").strip()
+
+#     if question.lower() == "exit":
+#         break
+
+#     messages.append({
+#         "role": "user",
+#         "content": question
+#     })
+
+#     response = client.chat.completions.create(
+#         model="openai/gpt-oss-20b",
+#         messages=messages
+#     )
+
+#     answer = response.choices[0].message.content
+
+#     messages.append({
+#         "role": "assistant",
+#         "content": answer
+#     })
+
+#     print("\nAI:", answer)
 # import os
 # from dotenv import load_dotenv
 # from openai import OpenAI
